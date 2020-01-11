@@ -28,7 +28,7 @@ cd "$tmp_dir"
 mkdir isofiles
 
 # Download ISO
-wget "$base_dowload_path$original_iso"
+wget "$base_dowload_path$original_iso" -O $original_iso --continue
 
 # Extract & modify
 bsdtar -C isofiles -xf "$original_iso"
