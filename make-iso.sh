@@ -5,10 +5,12 @@ check() {
     command -v "$1" >/dev/null 2>&1 || { echo "[!] $1 is required" >&2; exit 1; }
 }
 
+check "wget"
 check "bsdtar"
 check "gunzip"
 check "gzip"
 check "cpio"
+check "sed"
 check "xorriso"
 
 set -e
