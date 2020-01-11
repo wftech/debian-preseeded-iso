@@ -17,12 +17,12 @@ check "xorriso"
 
 locations="/usr/lib/ISOLINUX/isohdpfx.bin /usr/share/syslinux/isohdpfx.bin"
 for location in $locations failed; do
-    if [ -f $location ]; then 
+    if [ -f "$location" ]; then
          ISOHDPFX_LOCATION=$location
          break
     fi
-    if [ $location == failed ]; then
-         echo "[!] isohdpfx.bin not found"; exit 1 
+    if [ "$location" = failed ]; then
+         echo "[!] isohdpfx.bin not found"; exit 1
     fi
 done
 
@@ -66,7 +66,7 @@ chmod -w -R isofiles/isolinux
 
 # Create new iso
 xorriso -as mkisofs -o "$new_iso" \
-    -isohybrid-mbr ${ISOHDPFX_LOCATION} \
+    -isohybrid-mbr "${ISOHDPFX_LOCATION}" \
     -c isolinux/boot.cat -b isolinux/isolinux.bin -no-emul-boot \
     -boot-load-size 4 -boot-info-table isofiles
 
