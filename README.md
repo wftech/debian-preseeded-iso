@@ -2,12 +2,13 @@
 
 ## Requirements
 
+- wget
 - bsdtar
 - gzip
 - gunzip
 - cpio
 - xorriso
-- sed
+- GNU sed
 - isolinux
 
 ## Usage
