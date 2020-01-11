@@ -36,6 +36,18 @@ echo preseed.cfg | cpio -H newc -o -A -F isofiles/install.amd/initrd
 gzip isofiles/install.amd/initrd
 chmod -w -R isofiles/install.amd/
 
+# Disable gtk installer - grub
+chmod +w -R isofiles/boot/grub
+sed -ie '/Graphical install/,+4 s/^/#/' isofiles/boot/grub/grub.cfg
+chmod -w -R isofiles/boot/grub
+
+# Disable gtk installer and modify timeout - isolinux
+chmod +w -R isofiles/isolinux
+sed -i '/gtk/s/^/#/' isofiles/isolinux/menu.cfg
+sed -i 's/timeout 0/timeout 50/' isofiles/isolinux/isolinux.cfg
+echo 'totaltimeout 100' >>  isofiles/isolinux/isolinux.cfg
+chmod -w -R isofiles/isolinux
+
 # Create new iso
 xorriso -as mkisofs -o "$new_iso" \
     -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \

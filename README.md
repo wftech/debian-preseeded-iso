@@ -7,6 +7,7 @@
 - gunzip
 - cpio
 - xorriso
+- sed
 - isolinux
 
 ## Usage
@@ -26,4 +27,6 @@ qemu-system-x86_64 -hda deb.img -m 2048 -cdrom preseed-debian-buster.iso
 
 ## TODO
 
-- [ ] Boot into TUI installer by default
+- [x] Boot into TUI installer by default
+- [ ] Check local isolinux files
+- [ ] Setup GRUB auto boot (needed for EFI)
