@@ -5,6 +5,7 @@ check() {
     command -v "$1" >/dev/null 2>&1 || { echo "[!] $1 is required" >&2; exit 1; }
 }
 
+
 check "wget"
 check "bsdtar"
 check "gunzip"
@@ -12,6 +13,18 @@ check "gzip"
 check "cpio"
 check "sed"
 check "xorriso"
+
+
+locations="/usr/lib/ISOLINUX/isohdpfx.bin /usr/share/syslinux/isohdpfx.bin"
+for location in $locations failed; do
+    if [ -f $location ]; then 
+         ISOHDPFX_LOCATION=$location
+         break
+    fi
+    if [ $location == failed ]; then
+         echo "[!] isohdpfx.bin not found"; exit 1 
+    fi
+done
 
 set -e
 set -x
@@ -28,7 +41,7 @@ cd "$tmp_dir"
 mkdir isofiles
 
 # Download ISO
-wget "$base_dowload_path$original_iso"
+wget "$base_dowload_path$original_iso" -O ${original_iso} --continue
 
 # Extract & modify
 bsdtar -C isofiles -xf "$original_iso"
@@ -53,7 +66,7 @@ chmod -w -R isofiles/isolinux
 
 # Create new iso
 xorriso -as mkisofs -o "$new_iso" \
-    -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
+    -isohybrid-mbr ${ISOHDPFX_LOCATION} \
     -c isolinux/boot.cat -b isolinux/isolinux.bin -no-emul-boot \
     -boot-load-size 4 -boot-info-table isofiles
 
