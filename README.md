@@ -29,5 +29,5 @@ qemu-system-x86_64 -hda deb.img -m 2048 -cdrom preseed-debian-buster.iso
 ## TODO
 
 - [x] Boot into TUI installer by default
-- [ ] Check local isolinux files
+- [x] Check local isolinux files
 - [x] Setup GRUB auto boot (needed for EFI)
