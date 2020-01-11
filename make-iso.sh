@@ -35,13 +35,15 @@ base_dowload_path="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-inc
 new_iso="preseed-debian-buster.iso"
 output_dir="$(pwd)"
 tmp_dir="$(mktemp -d)"
-cp preseed.cfg "$tmp_dir"
-
-cd "$tmp_dir"
-mkdir isofiles
 
 # Download ISO
-wget "$base_dowload_path$original_iso" -O ${original_iso} --continue
+wget "$base_dowload_path$original_iso" -O "$original_iso" --continue
+
+# Prepare temp dir
+cp "$original_iso" "$tmp_dir"
+cp preseed.cfg "$tmp_dir"
+cd "$tmp_dir"
+mkdir isofiles
 
 # Extract & modify
 bsdtar -C isofiles -xf "$original_iso"
