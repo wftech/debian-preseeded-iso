@@ -36,8 +36,9 @@ echo preseed.cfg | cpio -H newc -o -A -F isofiles/install.amd/initrd
 gzip isofiles/install.amd/initrd
 chmod -w -R isofiles/install.amd/
 
-# Disable gtk installer - grub
+# Disable gtk installer and modify timeout - grub
 chmod +w -R isofiles/boot/grub
+sed -i '1i set timeout=5' isofiles/boot/grub/grub.cfg
 sed -ie '/Graphical install/,+4 s/^/#/' isofiles/boot/grub/grub.cfg
 chmod -w -R isofiles/boot/grub
 
