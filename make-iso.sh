@@ -66,6 +66,18 @@ sed -i 's/timeout 0/timeout 50/' isofiles/isolinux/isolinux.cfg
 echo 'totaltimeout 100' >>  isofiles/isolinux/isolinux.cfg
 chmod -w -R isofiles/isolinux
 
+# Regenerate md5sum.txt
+cd isofiles
+chmod +w md5sum.txt
+rm md5sum.txt
+# egrep hack bacause of "debian -> ." - find exits with status code 1
+iso_files="$(find -follow -type f | egrep '.*')"
+for f in $iso_files; do
+    md5sum "$f" >> md5sum.txt
+done
+chmod -w md5sum.txt
+cd ..
+
 # Create new iso
 xorriso -as mkisofs -o "$new_iso" \
     -isohybrid-mbr "${ISOHDPFX_LOCATION}" \
