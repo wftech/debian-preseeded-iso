@@ -9,6 +9,7 @@
 - cpio
 - xorriso
 - GNU sed
+- egrep
 - isolinux
 
 ## Usage

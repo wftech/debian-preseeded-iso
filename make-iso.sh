@@ -12,6 +12,7 @@ check "gunzip"
 check "gzip"
 check "cpio"
 check "sed"
+check "egrep"
 check "xorriso"
 
 
