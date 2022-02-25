@@ -31,9 +31,9 @@ set -e
 set -x
 
 # Setup
-original_iso="firmware-10.2.0-amd64-netinst.iso"
-base_dowload_path="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.2.0+nonfree/amd64/iso-cd/"
-new_iso="preseed-debian-buster.iso"
+original_iso="firmware-11.2.0-amd64-netinst.iso"
+base_dowload_path="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/11.2.0+nonfree/amd64/iso-cd/"
+new_iso="preseed-debian-bullseye.iso"
 output_dir="$(pwd)"
 tmp_dir="$(mktemp -d)"
 

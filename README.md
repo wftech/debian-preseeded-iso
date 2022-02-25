@@ -24,7 +24,7 @@
 
 ```sh
 qemu-img create deb.img 5G
-qemu-system-x86_64 -hda deb.img -m 2048 -cdrom preseed-debian-buster.iso
+qemu-system-x86_64 -hda deb.img -m 2048 -cdrom preseed-debian-bullseye.iso
 ```
 
 ## TODO
